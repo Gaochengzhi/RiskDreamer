@@ -1,0 +1,22 @@
+setuptools
+torch
+torchvision
+pandas
+matplotlib
+ruamel.yaml==0.17.4
+moviepy==1.0.3
+einops==0.3.0
+protobuf==3.20.0
+gym
+dm_control==1.0.9
+scipy
+opencv-python
+numpy
+tensorboard
+wandb
+traci==1.20.0
+eclipse-sumo==1.20.0
+sumolib==1.20.0
+# minerl==0.4.4
+# This was needed for minerl
+# conda install -c conda-forge openjdk=8
