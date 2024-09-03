@@ -33,8 +33,8 @@ class WorldModel(nn.Module):
         self._step = step
         self._use_amp = True if config.precision == 16 else False
         self._config = config
-        shapes = {k: tuple(v.shape) for k, v in obs_space.spaces.items()}
-        self.encoder = networks.MultiEncoder(shapes, **config.encoder)
+        obs_shapes = {k: tuple(v.shape) for k, v in obs_space.spaces.items()}
+        self.encoder = networks.MultiEncoder(obs_shapes, **config.encoder)
         self.embed_size = self.encoder.outdim
         self.dynamics = networks.RSSM(
             config.dyn_stoch,
@@ -59,7 +59,7 @@ class WorldModel(nn.Module):
         else:
             feat_size = config.dyn_stoch + config.dyn_deter
         self.heads["decoder"] = networks.MultiDecoder(
-            feat_size, shapes, **config.decoder
+            feat_size, obs_shapes, **config.decoder
         )
         self.heads["reward"] = networks.MLP(
             feat_size,
@@ -132,7 +132,7 @@ class WorldModel(nn.Module):
                 preds = {}
                 for name, head in self.heads.items():
                     grad_head = name in self._config.grad_heads
-                    feat = self.dynamics.get_feat(post)
+                    feat = self.dynamics.get_feature(post)
                     feat = feat if grad_head else feat.detach()
                     pred = head(feat)
                     if type(pred) is dict:
@@ -170,7 +170,7 @@ class WorldModel(nn.Module):
             )
             context = dict(
                 embed=embed,
-                feat=self.dynamics.get_feat(post),
+                feat=self.dynamics.get_feature(post),
                 kl=kl_value,
                 postent=self.dynamics.get_dist(post).entropy(),
             )

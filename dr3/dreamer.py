@@ -14,6 +14,7 @@ import os
 import pathlib
 import sys
 import wandb
+import shutil
 
 sys.path.append(str(pathlib.Path(__file__).parent))
 
@@ -35,19 +36,21 @@ class Dreamer(nn.Module):
         self._step = logger.step // config.action_repeat
         self._update_count = 0
         self._dataset = dataset
-        self._wm = models.WorldModel(obs_space, act_space, self._step, config)
-        self._task_behavior = models.ImagBehavior(config, self._wm)
+        self.world_model = models.WorldModel(
+            obs_space, act_space, self._step, config)
+        self._behavior_model = models.ImagBehavior(config, self.world_model)
+
         if (
             config.compile and os.name != "nt"
         ):  # compilation is not supported on windows
-            self._wm = torch.compile(self._wm)
-            self._task_behavior = torch.compile(self._task_behavior)
+            self.world_model = torch.compile(self.world_model)
+            self._behavior_model = torch.compile(self._behavior_model)
 
-        def reward(f, s, a): return self._wm.heads["reward"](f).mean()
         self._expl_behavior = dict(
-            greedy=lambda: self._task_behavior,
+            greedy=lambda: self._behavior_model,
             random=lambda: expl.Random(config, act_space),
-            plan2explore=lambda: expl.Plan2Explore(config, self._wm, reward),
+            plan2explore=lambda: expl.Plan2Explore(
+                config, self.world_model, lambda feature, state, action: self.world_model.heads["reward"](feature).mean()),
         )[config.expl_behavior]().to(self._config.device)
 
     def __call__(self, obs, reset, state=None, training=True):
@@ -62,11 +65,6 @@ class Dreamer(nn.Module):
                 self._train(next(self._dataset))
                 self._update_count += 1
                 self._metrics["update_count"] = self._update_count
-            if self._should_log(step):
-                for name, values in self._metrics.items():
-                    self._logger.scalar(name, float(np.mean(values)))
-                    self._metrics[name] = []
-                self._logger.write(fps=True)
 
         policy_output, state = self._policy(obs, state, training)
 
@@ -80,21 +78,21 @@ class Dreamer(nn.Module):
             latent = action = None
         else:
             latent, action = state
-        obs = self._wm.preprocess(obs)
-        embed = self._wm.encoder(obs)
-        latent, _ = self._wm.dynamics.obs_step(
+        obs = self.world_model.preprocess(obs)
+        embed = self.world_model.encoder(obs)
+        latent, _ = self.world_model.dynamics.obs_step(
             latent, action, embed, obs["is_first"])
         if self._config.eval_state_mean:
             latent["stoch"] = latent["mean"]
-        feat = self._wm.dynamics.get_feat(latent)
+        feature = self.world_model.dynamics.get_feature(latent)
         if not training:
-            actor = self._task_behavior.actor(feat)
+            actor = self._behavior_model.actor(feature)
             action = actor.mode()
         elif self._should_expl(self._step):
-            actor = self._expl_behavior.actor(feat)
+            actor = self._expl_behavior.actor(feature)
             action = actor.sample()
         else:
-            actor = self._task_behavior.actor(feat)
+            actor = self._behavior_model.actor(feature)
             action = actor.sample()
         logprob = actor.log_prob(action)
         latent = {k: v.detach() for k, v in latent.items()}
@@ -109,14 +107,14 @@ class Dreamer(nn.Module):
 
     def _train(self, data):
         metrics = {}
-        post, context, mets = self._wm._train(data)
+        post, context, mets = self.world_model._train(data)
         metrics.update(mets)
         start = post
 
-        def reward(f, s, a): return self._wm.heads["reward"](
-            self._wm.dynamics.get_feat(s)
+        def reward(feature, state, action): return self.world_model.heads["reward"](
+            self.world_model.dynamics.get_feature(state)
         ).mode()
-        metrics.update(self._task_behavior._train(start, reward)[-1])
+        metrics.update(self._behavior_model._train(start, reward)[-1])
         if self._config.expl_behavior != "greedy":
             mets = self._expl_behavior.train(start, context, data)[-1]
             metrics.update(
@@ -128,10 +126,6 @@ class Dreamer(nn.Module):
                 self._metrics[name].append(value)
 
 
-def count_steps(folder):
-    return sum(int(str(n).split("-")[-1][:-4]) - 1 for n in folder.glob("*.npz"))
-
-
 def make_dataset(episodes, config):
     generator = util.sample_episodes(episodes, config.batch_length)
     dataset = util.from_generator(generator, config.batch_size)
@@ -141,7 +135,7 @@ def make_dataset(episodes, config):
 def make_env(config, mode, id):
     import uuid
     from run_env import Highway_env
-    env = Highway_env(label=str(uuid.uuid4()))
+    env = Highway_env(label=str(uuid.uuid1()))
     env = wrappers.NormalizeActions(env)
     env = wrappers.TimeLimit(env, config.time_limit)
     env = wrappers.SelectAction(env, key="action")
@@ -149,129 +143,128 @@ def make_env(config, mode, id):
     return env
 
 
-def main(config):
+def setup_config(config):
+    logdir_path = pathlib.Path(config.logdir).expanduser()
 
-    # wandb.init(project="compare", name=f"dreamer")
-    util.set_seed_everywhere(config.seed)
-    if config.deterministic_run:
-        util.enable_deterministic_run()
-    logdir = pathlib.Path(config.logdir).expanduser()
-    config.traindir = config.traindir or logdir / "train_eps"
-    config.evaldir = config.evaldir or logdir / "eval_eps"
+    config.traindir = config.traindir or logdir_path / "train_eps"
+    config.evaldir = config.evaldir or logdir_path / "eval_eps"
+
     config.steps //= config.action_repeat
     config.eval_every //= config.action_repeat
     config.log_every //= config.action_repeat
     config.time_limit //= config.action_repeat
 
-    print("Logdir===========================================", logdir)
-    logdir.mkdir(parents=True, exist_ok=True)
+    if logdir_path.exists() and logdir_path.is_dir():
+        shutil.rmtree(logdir_path)
+        logdir_path.mkdir(parents=True, exist_ok=True)
     config.traindir.mkdir(parents=True, exist_ok=True)
     config.evaldir.mkdir(parents=True, exist_ok=True)
-    step = count_steps(config.traindir)
-    # step in logger is environmental step
-    logger = util.Logger(logdir, config.action_repeat * step)
+    return logdir_path
+
+
+def main(config):
+    wandb.init(project="compare", name=f"dreamer")
+    util.set_seed_everywhere(config.seed)
+    if config.deterministic_run:
+        util.enable_deterministic_run()
+
+    logdir_path = setup_config(config=config)
+    logger = util.Logger(logdir_path, step=0)
 
     print("Create envs.")
-    if config.offline_traindir:
-        directory = config.offline_traindir.format(**vars(config))
-    else:
-        directory = config.traindir
-    train_eps = util.load_episodes(directory, limit=config.dataset_size)
-    if config.offline_evaldir:
-        directory = config.offline_evaldir.format(**vars(config))
-    else:
-        directory = config.evaldir
-    eval_eps = util.load_episodes(directory, limit=1)
-    def get_env(mode, id): return make_env(config, mode, id)
-    train_envs = [get_env("train", i) for i in range(config.envs)]
-    eval_envs = [get_env("eval", i) for i in range(config.envs)]
-    if config.parallel:
-        train_envs = [Parallel(env, "process") for env in train_envs]
-        eval_envs = [Parallel(env, "process") for env in eval_envs]
-    else:
-        train_envs = [Damy(env) for env in train_envs]
-        eval_envs = [Damy(env) for env in eval_envs]
-    acts = train_envs[0].action_space
-    print("Action Space", acts)
-    config.num_actions = acts.n if hasattr(acts, "n") else acts.shape[0]
+    train_eps_cache = util.load_episodes(
+        config.traindir, limit=config.dataset_size)
+    eval_eps_cache = util.load_episodes(config.evaldir, limit=1)
+
+    def make(mode, id): return make_env(config, mode, id)
+    train_envs = [make("train", i) for i in range(config.envs)]
+    eval_envs = [make("eval", i) for i in range(config.envs)]
+    train_envs = [Parallel(env, "process") for env in train_envs]
+    eval_envs = [Parallel(env, "process") for env in eval_envs]
+
+    act_space = train_envs[0].action_space
+    print("Action Space", act_space)
+
+    config.num_actions = act_space.n if hasattr(
+        act_space, "n") else act_space.shape[0]
 
     state = None
-    if not config.offline_traindir:
-        prefill_num = max(0, config.prefill - count_steps(config.traindir))
-        print(f"Prefill dataset ({prefill_num} steps).")
-        if hasattr(acts, "discrete"):
-            random_actor_buf = util.OneHotDist(
-                torch.zeros(config.num_actions).repeat(config.envs, 1)
-            )
-        else:
-            random_actor_buf = distributions.independent.Independent(
-                distributions.uniform.Uniform(
-                    torch.Tensor(acts.low).repeat(config.envs, 1),
-                    torch.Tensor(acts.high).repeat(config.envs, 1),
-                ),
-                1,
-            )
-
-        def random_agent(o, d, s):
-            action = random_actor_buf.sample()
-            logprob = random_actor_buf.log_prob(action)
-            return {"action": action, "logprob": logprob}, None
-
-        state = util.simulate(
-            random_agent,
-            train_envs,
-            train_eps,
-            config.traindir,
-            logger,
-            limit=config.dataset_size,
-            steps=prefill_num,
+    prefill_num = max(0, config.prefill - 0)
+    print(f"Prefill dataset ({prefill_num} steps).")
+    if hasattr(act_space, "discrete"):
+        random_actor_buf = util.OneHotDist(
+            torch.zeros(config.num_actions).repeat(config.envs, 1)
         )
-        logger.step += prefill_num * config.action_repeat
-        print(f"Logger: ({logger.step} steps).")
+    else:
+        random_actor_buf = distributions.independent.Independent(
+            distributions.uniform.Uniform(
+                torch.Tensor(act_space.low).repeat(config.envs, 1),
+                torch.Tensor(act_space.high).repeat(config.envs, 1),
+            ),
+            1,
+        )
+
+    def random_agent(o, d, s):
+        action = random_actor_buf.sample()
+        logprob = random_actor_buf.log_prob(action)
+        return {"action": action, "logprob": logprob}, None
+
+    # prefill state
+    # state: step, episode, done, length, obs, agent_state, reward
+    state = util.simulate(
+        agent=random_agent,
+        envs=train_envs,
+        cache=train_eps_cache,
+        directory=config.traindir,
+        logger=logger,
+        limit=config.dataset_size,
+        total_steps=prefill_num,
+    )
+    logger.step += prefill_num * config.action_repeat
+    print(f"Logger: ({logger.step} steps).")
 
     print("Simulate agent.")
-    train_dataset = make_dataset(train_eps, config)
-    eval_dataset = make_dataset(eval_eps, config)
-    agent = Dreamer(
+    train_dataset = make_dataset(train_eps_cache, config)
+    dreamer_agent = Dreamer(
         train_envs[0].observation_space,
         train_envs[0].action_space,
         config,
         logger,
         train_dataset,
     ).to(config.device)
-    agent.requires_grad_(requires_grad=False)
+    dreamer_agent.requires_grad_(requires_grad=False)
 
     # make sure eval will be executed once after config.steps
-    while agent._step < config.steps + config.eval_every:
-        logger.write()
+    while dreamer_agent._step < config.steps + config.eval_every:
         if config.eval_episode_num > 0:
             print("Start evaluation.")
-            eval_policy = functools.partial(agent, training=False)
+            eval_policy_agent = functools.partial(
+                dreamer_agent, training=False)
             util.simulate(
-                eval_policy,
+                eval_policy_agent,
                 eval_envs,
-                eval_eps,
+                eval_eps_cache,
                 config.evaldir,
                 logger,
                 is_eval=True,
-                episodes=config.eval_episode_num,
+                max_episodes=config.eval_episode_num,
             )
         print("Start training.")
         state = util.simulate(
-            agent,
+            dreamer_agent,
             train_envs,
-            train_eps,
+            train_eps_cache,
             config.traindir,
             logger,
             limit=config.dataset_size,
-            steps=config.eval_every,
+            total_steps=config.eval_every,
             state=state,
         )
-        items_to_save = {
-            "agent_state_dict": agent.state_dict(),
-            "optims_state_dict": util.recursively_collect_optim_state_dict(agent),
-        }
-        torch.save(items_to_save, logdir / "latest.pt")
+        # items_to_save = {
+        #     "agent_state_dict": dreamer_agent.state_dict(),
+        #     "optims_state_dict": util.recursively_collect_optim_state_dict(dreamer_agent),
+        # }
+        # torch.save(items_to_save, logdir_path / "latest.pt")
     for env in train_envs + eval_envs:
         try:
             env.close()
@@ -287,19 +280,13 @@ if __name__ == "__main__":
         (pathlib.Path(sys.argv[0]).parent / "configs.yaml").read_text()
     )
 
-    def recursive_update(base, update):
-        for key, value in update.items():
-            if isinstance(value, dict) and key in base:
-                recursive_update(base[key], value)
-            else:
-                base[key] = value
-
     name_list = ["defaults", *args.configs] if args.configs else ["defaults"]
     defaults = {}
     for name in name_list:
-        recursive_update(defaults, configs[name])
+        util.recursive_update(defaults, configs[name])
     parser = argparse.ArgumentParser()
     for key, value in sorted(defaults.items(), key=lambda x: x[0]):
         arg_type = util.args_type(value)
         parser.add_argument(f"--{key}", type=arg_type, default=arg_type(value))
+
     main(parser.parse_args(remaining))

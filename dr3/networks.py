@@ -153,7 +153,7 @@ class RSSM(nn.Module):
         prior = {k: swap(v) for k, v in prior.items()}
         return prior
 
-    def get_feat(self, state):
+    def get_feature(self, state):
         stoch = state["stoch"]
         if self._discrete:
             shape = list(stoch.shape[:-2]) + [self._stoch * self._discrete]

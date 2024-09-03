@@ -126,7 +126,7 @@ def run_one_experiment(alg_name) -> None:
         'use_wandb': True,
         'wandb_project ': 'omnisafe',
     }
-    args_dict = custom_cfgs_to_dict(args_dict)
+    args_dict = 
 
     agent = omnisafe.Agent(
         args_dict.algo,

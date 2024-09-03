@@ -15,6 +15,15 @@ from torch import nn
 from torch.nn import functional as F
 from torch import distributions as torchd
 from torch.utils.tensorboard import SummaryWriter
+import wandb
+
+
+def recursive_update(base, update):
+    for key, value in update.items():
+        if isinstance(value, dict) and key in base:
+            recursive_update(base[key], value)
+        else:
+            base[key] = value
 
 
 def to_np(x): return x.detach().cpu().numpy()
@@ -107,8 +116,8 @@ def simulate(
     logger,
     is_eval=False,
     limit=None,
-    steps=0,
-    episodes=0,
+    total_steps=0,
+    max_episodes=0,
     state=None,
 ):
     # initialize or unpack simulation state
@@ -121,10 +130,13 @@ def simulate(
         reward = [0] * len(envs)
     else:
         step, episode, done, length, obs, agent_state, reward = state
-    while (steps and step < steps) or (episodes and episode < episodes):
+    while (total_steps and step < total_steps) or (max_episodes and episode < max_episodes):
         # reset envs if necessary
         if done.any():
             indices = [index for index, d in enumerate(done) if d]
+            info_list = [envs[i].get_info() for i in indices]
+            info_list = [r() for r in info_list]
+            wandb.log(info_list[0])
             results = [envs[i].reset() for i in indices]
             results = [r() for r in results]
             for index, result in zip(indices, results):
@@ -163,6 +175,7 @@ def simulate(
         # add to cache
         for a, result, env in zip(action, results, envs):
             o, r, d, info = result
+
             o = {k: convert(v) for k, v in o.items()}
             transition = o.copy()
             if isinstance(a, dict):
@@ -180,8 +193,6 @@ def simulate(
             for i in indices:
                 save_episodes(directory, {envs[i].id: cache[envs[i].id]})
                 length = len(cache[envs[i].id]["reward"]) - 1
-                score = float(np.array(cache[envs[i].id]["reward"]).sum())
-                video = cache[envs[i].id]["image"]
                 # record logs given from environments
                 for key in list(cache[envs[i].id].keys()):
                     if "log_" in key:
@@ -191,38 +202,12 @@ def simulate(
                         # log items won't be used later
                         cache[envs[i].id].pop(key)
 
-                if not is_eval:
-                    step_in_dataset = erase_over_episodes(cache, limit)
-                    logger.scalar(f"dataset_size", step_in_dataset)
-                    logger.scalar(f"train_return", score)
-                    logger.scalar(f"train_length", length)
-                    logger.scalar(f"train_episodes", len(cache))
-                    logger.write(step=logger.step)
-                else:
-                    if not "eval_lengths" in locals():
-                        eval_lengths = []
-                        eval_scores = []
-                        eval_done = False
-                    # start counting scores for evaluation
-                    eval_scores.append(score)
-                    eval_lengths.append(length)
-
-                    score = sum(eval_scores) / len(eval_scores)
-                    length = sum(eval_lengths) / len(eval_lengths)
-                    logger.video(f"eval_policy", np.array(video)[None])
-
-                    if len(eval_scores) >= episodes and not eval_done:
-                        logger.scalar(f"eval_return", score)
-                        logger.scalar(f"eval_length", length)
-                        logger.scalar(f"eval_episodes", len(eval_scores))
-                        # logger.write(step=logger.step)
-                        eval_done = True
     if is_eval:
         # keep only last item for saving memory. this cache is used for video_pred later
         while len(cache) > 1:
             # FIFO
             cache.popitem(last=False)
-    return (step - steps, episode - episodes, done, length, obs, agent_state, reward)
+    return (step - total_steps, episode - max_episodes, done, length, obs, agent_state, reward)
 
 
 def add_to_cache(cache, id, transition):
@@ -733,7 +718,7 @@ class Optimizer:
             "sgd": lambda: torch.optim.SGD(parameters, lr=lr),
             "momentum": lambda: torch.optim.SGD(parameters, lr=lr, momentum=0.9),
         }[opt]()
-        self._scaler = torch.cuda.amp.GradScaler(enabled=use_amp)
+        self._scaler = torch.GradScaler('cuda', enabled=use_amp)
 
     def __call__(self, loss, params, retain_graph=True):
         assert len(loss.shape) == 0, loss.shape
