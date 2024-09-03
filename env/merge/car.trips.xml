@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- generated on 2024-08-19 17:47:02.783582 by randomTrips.py UNKNOWN
+<configuration>
+    <net-file value="highway.net.xml"/>
+    <output-trip-file value="car.trips.xml"/>
+    <route-file value="output.trips1.xml"/>
+    <prefix value="car"/>
+    <trip-attributes value="departLane=&quot;best&quot; departSpeed=&quot;5&quot;  "/>
+    <lanes value="True"/>
+    <fringe-factor value="100000"/>
+    <seed value="70"/>
+    <min-distance value="10.0"/>
+    <max-distance value="500000.0"/>
+    <validate value="True"/>
+    <end value="754.0"/>
+    <period value="2.7"/>
+    <random-depart value="True"/>
+</configuration>
+-->
+
+<!-- generated on 2024-08-19 17:47:02 by Eclipse SUMO duarouter Version 1.20.0
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/duarouterConfiguration.xsd">
+
+    <input>
+        <net-file value="highway.net.xml"/>
+        <route-files value="car.trips.xml"/>
+    </input>
+
+    <output>
+        <output-file value="car.trips.xml.tmp"/>
+        <alternatives-output value="NUL"/>
+        <write-trips value="true"/>
+    </output>
+
+    <time>
+        <begin value="0"/>
+        <end value="754.0"/>
+    </time>
+
+    <report>
+        <no-warnings value="true"/>
+        <ignore-errors value="true"/>
+        <no-step-log value="true"/>
+    </report>
+
+</configuration>
+-->
+
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://sumo.dlr.de/xsd/routes_file.xsd">
+    <trip id="car0" type="car0" depart="1.80" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car1" type="car1" depart="8.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car2" type="car2" depart="12.60" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car3" type="car3" depart="17.60" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car4" type="car4" depart="24.20" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car5" type="car5" depart="27.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car6" type="car6" depart="30.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car7" type="car7" depart="32.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car8" type="car8" depart="33.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car9" type="car9" depart="36.10" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car10" type="car10" depart="36.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car11" type="car11" depart="36.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car12" type="car12" depart="42.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car13" type="car13" depart="43.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car14" type="car14" depart="43.60" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car15" type="car15" depart="49.60" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car16" type="car16" depart="50.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car17" type="car17" depart="53.00" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car18" type="car18" depart="53.60" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car19" type="car19" depart="54.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car20" type="car20" depart="55.60" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car21" type="car21" depart="59.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car22" type="car22" depart="60.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car23" type="car23" depart="61.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car24" type="car24" depart="61.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car25" type="car25" depart="62.10" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car26" type="car26" depart="62.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car27" type="car27" depart="67.00" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car28" type="car28" depart="68.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car29" type="car29" depart="74.10" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car30" type="car30" depart="74.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car31" type="car31" depart="75.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car32" type="car32" depart="80.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car33" type="car33" depart="81.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car34" type="car34" depart="84.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car35" type="car35" depart="86.10" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car36" type="car36" depart="88.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car37" type="car37" depart="91.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car38" type="car38" depart="93.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car39" type="car39" depart="96.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car40" type="car40" depart="98.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car41" type="car41" depart="98.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car42" type="car42" depart="99.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car43" type="car43" depart="100.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car44" type="car44" depart="103.30" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car45" type="car45" depart="105.70" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car46" type="car46" depart="106.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car47" type="car47" depart="107.80" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car48" type="car48" depart="108.80" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car49" type="car49" depart="109.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car50" type="car50" depart="117.20" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car51" type="car51" depart="120.40" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car52" type="car52" depart="121.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car53" type="car53" depart="121.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car54" type="car54" depart="123.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car55" type="car55" depart="124.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car56" type="car56" depart="127.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car57" type="car57" depart="130.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car58" type="car58" depart="131.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car59" type="car59" depart="132.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car60" type="car60" depart="133.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car61" type="car61" depart="136.10" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car62" type="car62" depart="137.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car63" type="car63" depart="137.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car64" type="car64" depart="140.00" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car65" type="car65" depart="141.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car66" type="car66" depart="142.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car67" type="car67" depart="155.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car68" type="car68" depart="157.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car69" type="car69" depart="158.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car70" type="car70" depart="158.00" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car71" type="car71" depart="165.60" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car72" type="car72" depart="167.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car73" type="car73" depart="168.10" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car74" type="car74" depart="171.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car75" type="car75" depart="175.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car76" type="car76" depart="180.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car77" type="car77" depart="184.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car78" type="car78" depart="186.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car79" type="car79" depart="188.90" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car80" type="car80" depart="194.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car81" type="car81" depart="195.20" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car82" type="car82" depart="195.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car83" type="car83" depart="195.80" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car84" type="car84" depart="196.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car85" type="car85" depart="202.40" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car86" type="car86" depart="203.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car87" type="car87" depart="209.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car88" type="car88" depart="210.60" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car89" type="car89" depart="211.80" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car90" type="car90" depart="214.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car91" type="car91" depart="219.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car92" type="car92" depart="221.70" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car93" type="car93" depart="228.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car94" type="car94" depart="233.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car95" type="car95" depart="233.90" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car96" type="car96" depart="234.10" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car97" type="car97" depart="235.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car98" type="car98" depart="237.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car99" type="car99" depart="239.00" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car100" type="car100" depart="240.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car101" type="car101" depart="242.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car102" type="car102" depart="243.30" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car103" type="car103" depart="244.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car104" type="car104" depart="248.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car105" type="car105" depart="252.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car106" type="car106" depart="253.40" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car107" type="car107" depart="257.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car108" type="car108" depart="263.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car109" type="car109" depart="264.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car110" type="car110" depart="265.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car111" type="car111" depart="265.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car112" type="car112" depart="267.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car113" type="car113" depart="271.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car114" type="car114" depart="272.60" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car115" type="car115" depart="273.90" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car116" type="car116" depart="279.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car117" type="car117" depart="284.10" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car118" type="car118" depart="294.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car119" type="car119" depart="296.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car120" type="car120" depart="296.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car121" type="car121" depart="297.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car122" type="car122" depart="301.10" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car123" type="car123" depart="301.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car124" type="car124" depart="301.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car125" type="car125" depart="304.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car126" type="car126" depart="304.10" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car127" type="car127" depart="305.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car128" type="car128" depart="309.80" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car129" type="car129" depart="310.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car130" type="car130" depart="316.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car131" type="car131" depart="320.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car132" type="car132" depart="327.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car133" type="car133" depart="329.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car134" type="car134" depart="332.40" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car135" type="car135" depart="334.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car136" type="car136" depart="336.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car137" type="car137" depart="338.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car138" type="car138" depart="341.70" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car139" type="car139" depart="346.20" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car140" type="car140" depart="354.30" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car141" type="car141" depart="355.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car142" type="car142" depart="356.20" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car143" type="car143" depart="371.00" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car144" type="car144" depart="371.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car145" type="car145" depart="381.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car146" type="car146" depart="381.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car147" type="car147" depart="385.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car148" type="car148" depart="386.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car149" type="car149" depart="389.00" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car150" type="car150" depart="392.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car151" type="car151" depart="393.00" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car152" type="car152" depart="395.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car153" type="car153" depart="399.60" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car154" type="car154" depart="399.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car155" type="car155" depart="402.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car156" type="car156" depart="403.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car157" type="car157" depart="406.60" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car158" type="car158" depart="407.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car159" type="car159" depart="409.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car160" type="car160" depart="410.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car161" type="car161" depart="412.80" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car162" type="car162" depart="417.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car163" type="car163" depart="429.10" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car164" type="car164" depart="431.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car165" type="car165" depart="436.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car166" type="car166" depart="437.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car167" type="car167" depart="438.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car168" type="car168" depart="447.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car169" type="car169" depart="452.20" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car170" type="car170" depart="455.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car171" type="car171" depart="456.10" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car172" type="car172" depart="457.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car173" type="car173" depart="460.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car174" type="car174" depart="469.20" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car175" type="car175" depart="470.10" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car176" type="car176" depart="472.40" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car177" type="car177" depart="477.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car178" type="car178" depart="478.60" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car179" type="car179" depart="478.80" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car180" type="car180" depart="482.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car181" type="car181" depart="482.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car182" type="car182" depart="485.70" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car183" type="car183" depart="491.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car184" type="car184" depart="491.90" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car185" type="car185" depart="495.30" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car186" type="car186" depart="496.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car187" type="car187" depart="497.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car188" type="car188" depart="497.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car189" type="car189" depart="499.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car190" type="car190" depart="502.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car191" type="car191" depart="504.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car192" type="car192" depart="511.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car193" type="car193" depart="511.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car194" type="car194" depart="512.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car195" type="car195" depart="515.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car196" type="car196" depart="518.10" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car197" type="car197" depart="521.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car198" type="car198" depart="527.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car199" type="car199" depart="527.80" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car200" type="car200" depart="528.60" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car201" type="car201" depart="528.90" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car202" type="car202" depart="529.80" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car203" type="car203" depart="532.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car204" type="car204" depart="534.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car205" type="car205" depart="536.80" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car206" type="car206" depart="542.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car207" type="car207" depart="549.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car208" type="car208" depart="554.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car209" type="car209" depart="556.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car210" type="car210" depart="559.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car211" type="car211" depart="566.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car212" type="car212" depart="577.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car213" type="car213" depart="583.40" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car214" type="car214" depart="585.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car215" type="car215" depart="588.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car216" type="car216" depart="589.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car217" type="car217" depart="589.90" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car218" type="car218" depart="596.40" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car219" type="car219" depart="599.60" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car220" type="car220" depart="605.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car221" type="car221" depart="607.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car222" type="car222" depart="608.60" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car223" type="car223" depart="609.10" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car224" type="car224" depart="611.60" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car225" type="car225" depart="613.40" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car226" type="car226" depart="616.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car227" type="car227" depart="619.80" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car228" type="car228" depart="621.30" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car229" type="car229" depart="622.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car230" type="car230" depart="622.70" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car231" type="car231" depart="623.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car232" type="car232" depart="627.10" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car233" type="car233" depart="627.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car234" type="car234" depart="629.40" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car235" type="car235" depart="632.20" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car236" type="car236" depart="636.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car237" type="car237" depart="642.00" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car238" type="car238" depart="650.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car239" type="car239" depart="650.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car240" type="car240" depart="655.60" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car241" type="car241" depart="661.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car242" type="car242" depart="661.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car243" type="car243" depart="662.00" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car244" type="car244" depart="669.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car245" type="car245" depart="673.90" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car246" type="car246" depart="676.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car247" type="car247" depart="680.10" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car248" type="car248" depart="682.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car249" type="car249" depart="683.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car250" type="car250" depart="684.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car251" type="car251" depart="684.70" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car252" type="car252" depart="684.80" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car253" type="car253" depart="685.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car254" type="car254" depart="690.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car255" type="car255" depart="691.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car256" type="car256" depart="692.10" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car257" type="car257" depart="696.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car258" type="car258" depart="696.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car259" type="car259" depart="697.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car260" type="car260" depart="699.50" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car261" type="car261" depart="700.10" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car262" type="car262" depart="700.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car263" type="car263" depart="701.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car264" type="car264" depart="707.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car265" type="car265" depart="711.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car266" type="car266" depart="714.70" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car267" type="car267" depart="719.00" departLane="best" departSpeed="5.00" from="E2" to="E3.123"/>
+    <trip id="car268" type="car268" depart="719.70" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car269" type="car269" depart="724.50" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car270" type="car270" depart="725.20" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car271" type="car271" depart="725.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car272" type="car272" depart="726.00" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car273" type="car273" depart="727.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car274" type="car274" depart="735.40" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car275" type="car275" depart="735.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car276" type="car276" depart="736.30" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car277" type="car277" depart="743.90" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car278" type="car278" depart="747.10" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+    <trip id="car279" type="car279" depart="753.10" departLane="best" departSpeed="5.00" from="E1" to="E3.123"/>
+</routes>
