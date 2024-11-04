@@ -1,0 +1,168 @@
+{
+    "os": "Linux-6.2.0-34-generic-x86_64-with-glibc2.35",
+    "python": "3.10.14",
+    "heartbeatAt": "2024-09-01T08:19:05.373575",
+    "startedAt": "2024-09-01T08:19:04.121762",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--algo",
+        "SafeLOOP"
+    ],
+    "state": "running",
+    "program": "/home/ujs/TPAMI/omnisafe/examples/train_policy.py",
+    "codePath": "examples/train_policy.py",
+    "git": {
+        "remote": "https://github.com/PKU-Alignment/omnisafe.git",
+        "commit": "080e6b828c65902611e86e7436dc47c674cdafd7"
+    },
+    "email": "2673730435@qq.com",
+    "root": "/home/ujs/TPAMI/omnisafe",
+    "host": "ujs",
+    "username": "ujs",
+    "executable": "/home/ujs/anaconda3/envs/safe/bin/python",
+    "cpu_count": 16,
+    "cpu_count_logical": 24,
+    "cpu_freq": {
+        "current": 4432.078666666665,
+        "min": 800.0,
+        "max": 4716.666666666667
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 4842.575,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 4681.223,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 4900.016,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 4900.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 4900.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 4898.74,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 4900.024,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 4853.582,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 4900.0,
+            "min": 800.0,
+            "max": 5200.0
+        },
+        {
+            "current": 4898.306,
+            "min": 800.0,
+            "max": 5200.0
+        },
+        {
+            "current": 4900.0,
+            "min": 800.0,
+            "max": 5200.0
+        },
+        {
+            "current": 4900.0,
+            "min": 800.0,
+            "max": 5200.0
+        },
+        {
+            "current": 4868.868,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 4879.09,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 4900.0,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 4900.67,
+            "min": 800.0,
+            "max": 5100.0
+        },
+        {
+            "current": 3700.072,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3700.037,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3699.923,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3699.874,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3289.658,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 2943.025,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3506.078,
+            "min": 800.0,
+            "max": 3900.0
+        },
+        {
+            "current": 3588.165,
+            "min": 800.0,
+            "max": 3900.0
+        }
+    ],
+    "disk": {
+        "total": 915.3232879638672,
+        "used": 732.0522003173828
+    },
+    "gpu": "NVIDIA GeForce RTX 3090 Ti",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3090 Ti",
+            "memory_total": 25757220864
+        }
+    ],
+    "memory": {
+        "total": 31.195159912109375
+    }
+}
