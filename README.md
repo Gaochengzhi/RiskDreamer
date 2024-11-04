@@ -10,7 +10,7 @@ cd dreamerv3 ## our implementation
 pip intstall -r requirements.txt
 ```
 
-### 2. config your path
+### 2. Config your path
 * in `dreamerv3/run_env.py` and `dreamerv3-torch/run_env.py` :
 
 ```python
@@ -34,7 +34,7 @@ else
     wandb.init(project="dreamer3", name="dreamer")
     tools.set_seed_everywhere(config.seed)
 ```
-## run the demo
+## Run the demo
 
 ### RiskDreamer:
 ```shell 
@@ -47,4 +47,12 @@ python dreamer.py --configs dmc_vision --task dmc_walker_walk --logdir ./logdir/
 ```shell 
 cd dreamerv3-torch
 python dreamer.py --configs dmc_vision --task dmc_walker_walk --logdir ./logdir/dmc_walker_walk
+```
+
+## Improve our algorithm
+
+```python
+>> line 146:def plan_action(self, post, em, is_training):
+                planning_horizon = 10  
+
 ```
