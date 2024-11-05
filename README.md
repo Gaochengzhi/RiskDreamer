@@ -6,12 +6,12 @@
 ```shell
 conda create dr3 -n python=3.11
 conda activate dr3
-cd dreamerv3 ## our implementation
+cd risk_dreamer ## our implementation
 pip install -r requirements.txt
 ```
 
 ### 2. Config your path
-* in `dreamerv3/run_env.py` and `dreamerv3-torch/run_env.py` :
+* in `risk_dreamer/run_env.py` and `dreamerv3_base/run_env.py` :
 
 ```python
 line 58 >> ROOT_PATH = "/home/ujs/TPAMI" # replace to your path
@@ -38,14 +38,14 @@ else
 
 ### RiskDreamer:
 ```shell 
-cd dreamerv3
+cd risk_dreamer
 python dreamer.py --configs dmc_vision --task dmc_walker_walk --logdir ./logdir/dmc_walker_walk
 ```
 
 ### Dreamerv3:
 ```shell
 ```shell 
-cd dreamerv3-torch
+cd dreamerv3_base
 python dreamer.py --configs dmc_vision --task dmc_walker_walk --logdir ./logdir/dmc_walker_walk
 ```
 
