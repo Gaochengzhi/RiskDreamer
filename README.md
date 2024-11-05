@@ -7,7 +7,7 @@
 conda create dr3 -n python=3.11
 conda activate dr3
 cd dreamerv3 ## our implementation
-pip intstall -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ### 2. Config your path
