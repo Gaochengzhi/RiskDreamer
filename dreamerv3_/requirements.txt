@@ -2,7 +2,6 @@ setuptools
 torch==2.4.1
 matplotlib==3.5.0
 ruamel.yaml==0.17.4
-moviepy==1.0.3
 einops==0.3.0
 protobuf==3.20.0
 scipy
@@ -14,7 +13,6 @@ eclipse-sumo==1.20.0
 traci==1.20.0
 sumolib==1.20.0
 wandb
-
 # minerl==0.4.4
 # This was needed for minerl
 # conda install -c conda-forge openjdk=8
