@@ -1,0 +1,23 @@
+\begin{table}[ht]
+\centering
+\caption{Boundaries of the car-following model parameters}
+\label{tab:parameter_bounds}
+\begin{tabular}{p{1.2cm}p{4.5cm}p{0.9cm}p{0.9cm}}
+\toprule
+\multicolumn{1}{c}{\textbf{Parameters}} & \multicolumn{1}{c}{\textbf{Descriptions (Unit)}} & \multicolumn{1}{c}{\textbf{Car}} & \multicolumn{1}{c}{\textbf{Bus}} \\
+\midrule                 
+$\tau_{\text{mean}}$ & Average time headway (\si{\second}) & (0.5, 4) & (0.5, 4) \\
+$\tau_{\text{std}}$ & Std. deviation of time headway ($-$)  & (0, 10) & (0, 10) \\
+$v_{\text{mean}}$ & Average max speed (\si{\meter/\second}) & (8, 26) & (8, 26) \\
+$v_{\text{std}}$ & Std. deviation of max speed ($-$) & (0, 20) & (0, 20) \\
+$a$ & Max acceleration (\si{\meter/\second^{2}}) & (0.2, 4)  & (0.2, 4) \\
+$d$ & Max deceleration  (\si{\meter/\second^{2}}) & (0.2, 4) & (0.2, 4) \\
+$L_{\text{sublane}}$ & Eagerness to align laterally in-lane ($-$) & (0, 1) & (0, 1) \\
+$L_{\text{pushy}}$ & Willingness to encroach laterally ($-$) & (0, 1) & (0, 1) \\
+$L_{\text{speed\_gain}}$ & Lane-changing for speed gain ($-$) & (0, 5) & (0, 5) \\
+$L_{\text{assertive}}$ & Acceptance of smaller gaps ($-$) & (1, 100) & (1, 100) \\
+$L_{\text{cooperative}}$ & Cooperative lane-changing ($-$) & (0, 1) & (0, 1) \\
+$L_{\text{lookahead}}$ & Adjustment for lookahead distance (\si{\meter}) & (2, 100) & (2, 100) \\
+\bottomrule
+\end{tabular}
+\end{table}

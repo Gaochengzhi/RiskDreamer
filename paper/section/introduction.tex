@@ -1,0 +1,36 @@
+
+\section{Introduction}
+\label{sec:introduction}
+% I. Broad Context and Significance (Setting the Stage):
+% A Opening Hook
+\IEEEPARstart{T}{}HE development of safe and efficient autonomous driving holds the promise of revolutionizing transportation, with the potential to enhance road safety \cite{liu2022transfer}, \cite{liu2024studying}, improve traffic efficiency \cite{liu2022exploring}, \cite{liu2024real}, and increase driving convenience \cite{liu2024learning}.
+Realizing this vision requires the ability of autonomous vehicles (AVs) to operate safely and efficiently in dynamic traffic environments.
+
+In recent years, artificial intelligence has greatly advanced autonomous driving, with reinforcement learning (RL)\cite{naturego},\cite{vinyals2019grandmaster},\cite{natureatari} playing a critical role. 
+% B. The Big Challenge:
+Nevertheless, achieving a proper balance between safety and efficiency is crucial for the practical application of RL-based autonomous driving systems.
+% II. Problem Statement and Limitations of Existing Approaches (Narrowing the Focus):
+% A. Safety-Focused Approaches (SafeRL Limitations):
+While Safe RL methods aim to guarantee safety by modifying optimization criteria \cite{zhang2020first} or employing policy projection techniques \cite{Wabersich_2022}, they often struggle to satisfy constraints as cost thresholds approach zero. Moreover, these methods may satisfy safety constraints at the expense of task completion \cite{he2023autocost}. Alternatively, RL agents using internal world models can efficiently plan action trajectories within a latent space. This approach enables cost minimization while striving to maintain high returns \cite{liu2020constrained}. 
+
+% B. Model-Based RL with Planners (Limitations): 
+Previous works have explored combining learned latent space dynamic models with trajectory planning to optimize policies \cite{MPPI}, \cite{CCEM},  \cite{CCEPETS}, \cite{gao2024spatial}. 
+These methods generally employ a model-predicted trajectory planning approach, their distinctions primarily lie in how they generate trajectories and select the final action. Typically, they first learn a latent space representation and dynamics model of the environment, and then generate a set of candidate trajectories based on these models. Ultimately, the optimal action is chosen according to each method's defined criteria to maximize external rewards. However, the explicit rollout of multiple candidate trajectories still imposes a significant computational burden. Also, these approaches often require task-specific hyper-parameter tuning to achieve a balance between exploration and risk aversion, potentially compromising their adaptability in dynamic traffic scenarios.
+
+% C. Traffic Simulation Limitations:
+Another notable limitation lies in the environment used for training and evaluating autonomous driving agents. One common approach uses large-scale real-world datasets \cite{nuplan}, \cite{WaymoMotion} but adopts an open-loop paradigm where background vehicles simply replay pre-recorded trajectories. This prevents the training agent from receiving feedback on how its actions influence the environment, hindering the agent's ability to generalize to highly interactive scenarios. Alternatively, some studies employ homogeneous traffic agents from untuned closed-loop simulations with simplified driving tasks \cite{FNI-RL}. Such homogeneity fails to capture the inherent variability and unpredictability of real-world traffic participants. Consequently, agents trained in these environments may exhibit overly optimistic performance metrics, as they have not been adequately exposed to the challenges of navigating genuinely reactive and diverse traffic situations.
+
+% III. Introducing RiskDreamer and its Core Contributions (The Solution):
+To address these limitations, we introduce RiskDreamer, a novel model-based reinforcement learning framework designed to improve safety and efficiency of autonomous driving agents. RiskDreamer builds upon the DreamerV3 \cite{dreamerv3} world model architecture to learn efficient dynamic representations. Building upon this foundation, RiskDreamer incorporates a novel batch planning methodology. This approach generates multiple imagined trajectories concurrently within the latent space during a single model rollout, significantly improving planning efficiency. Furthermore, RiskDreamer expands the agent's action space to directly output risk and entropy weights. These weights dynamically balance expected rewards, exploration, and risk aversion. Instead of relying on manually tuned hyperparameters, RiskDreamer learns to adjust these balancing factors at each decision step, directly outputting them from the policy network. This allows the agent to adapt its risk tolerance and exploration strategy based on the current traffic context and conditions. Finally, RiskDreamer is trained within a trustworthy traffic scenario generation framework based on optimization algorithms. This framework can generate heterogeneous traffic agents from real-world trajectory data, ensuring that both microscopic behaviors and macroscopic traffic flow characteristics align with statistical distributions observed in real-world traffic. This enables the agent to learn and generalize in a realistic and challenging simulation environment.
+
+The key contributions of this work are summarized as follows:
+
+\begin{enumerate}
+    \item We introduce a novel batch planning method within a world model's latent space, where the expanded action space directly controls risk and entropy weights, enabling dynamic balancing of reward, exploration, and risk in diverse traffic scenarios.
+
+    \item We develop a trustworthy traffic scenario generator using optimization on real-world data. It produces heterogeneous traffic agents with realistic behavior and statistics for training and evaluating autonomous driving agents.
+
+    \item Through extensive experiments and ablation studies, we demonstrate that our method effectively balances risk and efficiency, leading to improved performance in highly adversarial traffic scenarios.
+\end{enumerate}
+
+The rest of the paper is organized as follows: Section \ref{sec:related_works} reviews related works. Section \ref{sec:method} details the RiskDreamer framework. Section \ref{sec:experiments} presents experiments and  results. Finally, Section \ref{sec:conclusion} concludes the paper and discusses future work.

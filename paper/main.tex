@@ -1,0 +1,83 @@
+% \special{dvipdfmx:config z 0} %取消PDF压缩，加快速度，最终版本生成的时候最好把这句话注释掉
+\documentclass[journal]{IEEEtran}
+\usepackage{amsmath} 
+% \usepackage[draft]{graphicx}
+\usepackage{graphicx}
+\usepackage{siunitx} % 
+\usepackage{placeins}
+\usepackage{ragged2e}
+\usepackage[export]{adjustbox}
+\usepackage{cite}
+\usepackage{multirow}
+\usepackage{booktabs} 
+\usepackage{siunitx}
+\usepackage{amsbsy}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{bm}
+\usepackage{listings}
+\usepackage{amsmath}
+\usepackage[colorlinks=true, linkcolor=blue, citecolor=blue, urlcolor=blue]{hyperref}
+\usepackage{orcidlink}
+\usepackage[]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{url}
+\usepackage{array}
+\usepackage{pbox} 
+\usepackage{colortbl} 
+\usepackage{caption} 
+\captionsetup[table]{labelformat=simple, labelsep=newline, textfont=sc, justification=centering}
+\usepackage{tabularx}
+% 设置标题与图表之间的间距
+\captionsetup[figure]{skip=5pt,font={footnotesize},justification=raggedright, singlelinecheck=false,}  % 设} 
+\setlength{\extrarowheight}{2pt}
+\setlength{\tabcolsep}{4pt}
+\ifCLASSINFOpdf
+% \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+\fi
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+\input{authors}
+
+\begin{document}
+\title{RiskDreamer: Autonomous Driving via Entropy-Risk Balancing Action Expansion in Batch Planning with Trusted Traffic Simulations}
+
+% \markboth{IEEE TRANSACTIONS ON PATTERN ANALYSIS AND MACHINE INTELLIGENCE,~Vol.~XX, No.~X, XXX~2025}%
+\markboth{IEEE TRANSACTIONS ON X,~Vol.~XX, No.~X, XXX~2025}%
+{Shell \MakeLowercase{\textit{et al.}} }
+
+\maketitle
+\input{section/abstract}
+
+
+% For peer review papers, you can put extra information on the cover
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+\IEEEpeerreviewmaketitle
+
+
+\input{section/introduction}
+
+\input{section/related_works}
+
+\input{section/method}
+
+\input{section/experiments}
+\input{section/ablation}
+
+\input{section/conclusion}
+
+
+\ifCLASSOPTIONcaptionsoff
+  \newpage
+\fi
+
+\bibliographystyle{IEEEtran}
+\bibliography{bibtex/bib/IEEEabrv.bib,bibtex/bib/IEEEexample.bib}{}
+% or if you just want to reserve a space for a photo:
+\input{biography}
+\end{document}
+
+
