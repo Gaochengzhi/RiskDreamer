@@ -1,17 +1,28 @@
 # RiskDreamer: Autonomous Driving via Entropy-Risk Balancing Action Expansion in Batch Planning with Trusted Traffic Simulations
 
-some 徽章 
+<div align="center">
+    <a href="https://www.ujs.edu.cn/">Jiangsu University</a> & <a href="https://www.ntu.edu.sg/">Nanyang Technological University</a>
+</div>
 
-帮我写 单位超链接 Jiangsu University & Nanyang Technological University
+<!-- <div align="center">
 
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+![PyTorch](https://img.shields.io/badge/torch-2.0-orange)
+![Python](https://img.shields.io/badge/python-3.10-blue)
+![SUMO](https://img.shields.io/badge/sumo-1.19.0-green)
+</div> -->
+
+<div align="center">
 Qingchao Liu, Chengzhi Gao, Xiangkun He, Hai Wang, Chen Lv, Yingfeng Cai, Long Chen
+</div>
 
-下面排成一行居中
-[paper](https://github.com/Gaochengzhi/IEEE_template)
-[code1](https://github.com/Gaochengzhi/sumo_bayesian_calibration)
-[code2](https://github.com/Gaochengzhi/RiskDreamer)
-[data](https://github.com/ADSafetyJointLab/AD4CHE)
-[model](https://huggingface.co/taitanpascal/riskdreamer_model)
+<div align="center">
+  <a href="https://github.com/Gaochengzhi/IEEE_template">[paper]</a>
+  <a href="https://github.com/Gaochengzhi/sumo_bayesian_calibration">[code1]</a>
+  <a href="https://github.com/Gaochengzhi/RiskDreamer">[code2]</a>
+  <a href="https://github.com/ADSafetyJointLab/AD4CHE">[data]</a>
+  <a href="https://huggingface.co/taitanpascal/riskdreamer_model">[model]</a>
+</div>
 
 ## Overview
 ***Abstract***: Ensuring safety and achieving human-level driving
@@ -42,16 +53,28 @@ baseline methods.
 
 ## Framework
 
-居中，白色背景
-![alt text](.assets/frame1.png) 
+<div align="center" style="background-color: white;">
+  <img src=".assets/frame1.png" alt="Calibration framework of the trustworthy traffic simulation">
+</div>
+
 Calibration framework of the trustworthy traffic simulation
-![alt text](.assets/frame2.png)
+
+<div align="center" style="background-color: white;">
+  <img src=".assets/frame2.png" alt="Framework of the RiskDreamer algorithm">
+</div>
+
 Framework of the RiskDreamer algorithm. (a) Batch planning within latent space. (b) Action expansion for balancing entropy-risk.
 
 ## Results
-![alt text](.assets/train_curve.png)
+
+<div align="center" style="background-color: white;">
+  <img src=".assets/train_curve.png" alt="Results of different algorithm in the three scenarios">
+</div>
+
 Results of different algorithm in the three scenarios. (a) Training curves comparison. (b) Evaluation results
 
-![alt text](.assets/scatter_all.png)
-Evaluation pattern of agent performance: Speed vs. Navigation. Bigger points indicate denser data point distributions.
+<div align="center" style="background-color: white;">
+  <img src=".assets/scatter_all.png" alt="Evaluation pattern of agent performance">
+</div>
 
+Evaluation pattern of agent performance: Speed vs. Navigation. Bigger points indicate denser data point distributions.
